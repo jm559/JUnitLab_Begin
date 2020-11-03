@@ -20,4 +20,18 @@ public class GiftCardTest
 		assertEquals("getIssuingStore()",
 		issuingStore, card.getIssuingStore());
 	}
+	
+	@Test
+	public void getBalance()
+	{
+		double balance;
+		GiftCard card;
+		int issuingStore;
+		
+		issuingStore = 1337;
+		balance = 100.00;
+		card = new GiftCard(issuingStore, balance);
+		
+		assertEquals("getBalance()", balance, card.getBalance(), 0.001);
+	}
 }
