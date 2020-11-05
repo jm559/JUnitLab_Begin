@@ -51,6 +51,24 @@ public class GiftCardTest
 		result = "Remaining Balance: " + String.format("%6.2f",
                 Math.abs(balance-50));
 		
-		assertEquals("getBalance()", result, card.deduct(50));
+		assertEquals("deduct()", result, card.deduct(50));
+	}
+	
+	@Test
+	public void deductWithNegativeAndBalanceNegative()
+	{
+		double balance;
+		GiftCard card;
+		int issuingStore;
+		String result;
+		
+		issuingStore = 1337;
+		balance = 100.00;
+		card = new GiftCard(issuingStore, balance);
+		result = "Invalid Transaction";
+		
+		assertEquals("deductNegative()", result, card.deduct(-50));
+		card.deduct(200);
+		assertEquals("deductBalanceNegative()", 0.0, card.getBalance(), 0.01 );
 	}
 }
