@@ -1,6 +1,8 @@
 package csc131.junit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
@@ -70,5 +72,24 @@ public class GiftCardTest
 		assertEquals("deductNegative()", result, card.deduct(-50));
 		card.deduct(200);
 		assertEquals("deductBalanceNegative()", 0.0, card.getBalance(), 0.01 );
+		
+	}
+	
+	@Test
+	public void constructor_IncorrectBalance_Low()
+	{
+		assertThrows(IllegalArgumentException.class, ()->{new GiftCard(1,-100.00);});
+	}
+	
+	@Test
+	public void constructor_IncorrectID_Low()
+	{
+		assertThrows(IllegalArgumentException.class, ()->{new GiftCard(-1,100);});
+	}
+	
+	@Test
+	public void constructor_IncorrectID_High()
+	{
+		assertThrows(IllegalArgumentException.class, ()->{new GiftCard(10000,100);});
 	}
 }
